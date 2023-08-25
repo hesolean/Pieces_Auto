@@ -1,11 +1,26 @@
 import { ajoutListenersAvis } from "./avis.js";
 import { ajoutListenerEnvoyerAvis } from "./avis.js";
 
-// Récupération des pièces depuis le fichier JSON
-const reponse = await fetch("http://localhost:8081/pieces/");
-const pieces = await reponse.json();
+// récupération des pièces stockées dans le localStorage
+let pieces = window.localStorage.getItem("pieces")
+if (pieces === null) {
+    // Récupération des pièces depuis le fichier JSON
+    const reponse = await fetch("http://localhost:8081/pieces/");
+    pieces = await reponse.json();
+    // version condensée :
+    // const pieces = await fetch("http://localhost:8081/pieces/").then(pieces => pieces.json)
+} else {
+    pieces = JSON.parse(pieces);
+}
 
+
+// transformation en JSON
+const valeurPieces = JSON.stringify(pieces);
+
+// stockage local
+window.localStorage.setItem("pieces", valeurPieces);
 ajoutListenerEnvoyerAvis();
+
 
 function genererPieces(pieces){
     for (let i = 0; i < pieces.length; i++) {

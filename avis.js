@@ -29,6 +29,7 @@ export function ajoutListenersAvis() {
         const avis = {
             pieceId: event.target.querySelector("[name=piece-id]").value,
             utilisateur: event.target.querySelector("[name=utilisateur]").value,
+            note: parseInt(event.target.querySelector("[name=etoile").value),
             commentaire:event.target.querySelector("[name=commentaire]").value
         }
         const chargeUtile = JSON.stringify(avis);
