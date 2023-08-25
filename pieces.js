@@ -37,6 +37,7 @@ function genererPieces(pieces) {
 
         document.body.appendChild(sectionFiches);
     }
+    
     // creation d'un nouveau tableau pour n'avoir que les pieces de prix inferieur à 35 euros
     const piecesNoms = pieces.map((piece) => piece.nom + " - " + piece.prix + " €.");
     for (let i = pieces.length-1; i >=0; i--) {
