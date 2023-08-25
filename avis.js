@@ -22,4 +22,20 @@ export function ajoutListenersAvis() {
     }
  
  }
- 
+ export function ajoutListenerEnvoyerAvis() {
+    const formilaireAvis = document.querySelector(".formulaire-avis");
+    formilaireAvis.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const avis = {
+            pieceId: event.target.querySelector("[name=piece-id]").value,
+            utilisateur: event.target.querySelector("[name=utilisateur]").value,
+            commentaire:event.target.querySelector("[name=commentaire]").value
+        }
+        const chargeUtile = JSON.stringify(avis);
+        fetch("http://localhost:8081/avis", {
+            method: "POST",
+            headers: {"Content-type": "application/json"},
+            body: chargeUtile
+        })
+    })
+ }
